@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>fetch recipe</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Grub Lord</h1>
+    <p>Search Recipe:</p>
+
+    <form method="POST">
+        <label>Search for your favourite recipe:</label>
+        <input type="text" name="recipe" id="recipe" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <script>
+        $('#recipe').keyup(function (e) { 
+            console.log($(this).val());
+            var keyword = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "/fetchTemporaryResult?keyword="+keyword,
+                success: function (response) {
+
+                    if (response.length == 0) {
+                        console.log('');
+                        return;
+                    }
+
+                    console.log("RESPONSE");
+                    console.log(response);
+                    console.log("RECIPE NAME");
+                    
+                    response.forEach(function(element) {
+                        console.log(element["recipeName"]);
+                    }, this);
+
+                }
+            });
+        });
+    </script>
+
+  </body>
+</html>

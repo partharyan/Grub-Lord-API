@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post A Recipe</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+<style>
+
+    ul {
+        list-style: none;
+        width: 20%;
+        display: inline-block;
+    }
+</style>
+
+  <body>
+    <h1>Grub Lord</h1>
+    <p>Post a Recipe</p>
+
+    <form id="postRecipeform" enctype="multipart/form-data" method="POST" action="/postRecipe">
+        <label>Recipe Name:</label><br><br>
+        <input type="text" name="recipeName" required><br><br>
+
+        <ul class="ingredient">
+            <label>Ingredient</label><br><br>
+            <li><input type="text" name="ingredient1" required></li><br>    
+            <li><input type="text" name="ingredient2" required></li><br>
+            <li><input type="text" name="ingredient3" required></li><br>
+        </ul>        
+
+        <ul class="quantity">
+            <label>Quantity</label><br><br>
+            <li><input type="text" name="quantity1" required></li><br>
+            <li><input type="text" name="quantity2" required></li><br>
+            <li><input type="text" name="quantity3" required></li><br>
+        </ul>
+        <br><br>
+        
+        <input type="file" name="image" accept="image/*" required>
+        <textarea form="postRecipeform" placeholder="Write steps.." name="steps" rows="40" cols="100"></textarea>
+
+        <input type="submit" value="SUBMIT"><br><br>
+        
+    </form>
+
+    <button id="addFields">ADD Fields</button><br><br>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <script>
+        var fieldAddCounter = 3;
+
+        var addFields = $('#addFields');
+        addFields.click(function () { 
+            fieldAddCounter = fieldAddCounter + 1;
+            $('.ingredient').append('<li><input type="text" name="ingredient'+fieldAddCounter+'" required></li><br>');
+            $('.quantity').append('<li><input type="text" name="quantity'+fieldAddCounter+'" required></li><br>');
+        });
+
+    </script>
+  </body>
+</html>
